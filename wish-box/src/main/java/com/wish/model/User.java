@@ -1,8 +1,9 @@
-package com.wish.domain;
+package com.wish.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class User {
+public class User implements Serializable {
     private String userId;
     private String userPwd;
     private String userName;
@@ -10,6 +11,11 @@ public class User {
     private boolean isDeleted;
 
     public User() {
+    }
+
+    public User(String userId, String userPwd) {
+        this.userId = userId;
+        this.userPwd = userPwd;
     }
 
     public User(String userId, String userPwd, String userName, LocalDate birthDay, boolean isDeleted) {
