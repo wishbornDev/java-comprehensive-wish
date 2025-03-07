@@ -13,6 +13,10 @@ public class ReserveService {
 
     private static MovieService movieService = new MovieService();
 
+    /**
+     * 전체 예매내역 조회
+     * @return Reservation[]
+     */
     public Reservation[] getReserveList() throws Exception {
         File file = new File("reserve.txt");
 
@@ -26,6 +30,11 @@ public class ReserveService {
         return (Reservation[]) ois.readObject();
     }
 
+    /**
+     * 예매 내역 확인
+     * @param user
+     * @return List<Reservation
+     */
     public List<Reservation> checkReserve(User user) throws Exception {
 
         List<Reservation> reserveList = new ArrayList<>();
@@ -38,6 +47,10 @@ public class ReserveService {
         }
     }
 
+    /**
+     * 예매 취소
+     * @param reserveNo
+     */
     public void cancelReserve(int reserveNo) throws Exception{
 
         List<Reservation> reserveList = new ArrayList<>(Arrays.asList(getReserveList()));
@@ -51,6 +64,11 @@ public class ReserveService {
 
     }
 
+    /**
+     * 영화 예매
+     * @param reservation
+     * @return boolean
+     */
     public boolean reserveMovie(Reservation reservation) throws Exception {
 
         List<Reservation> reserveList = new ArrayList<>();
@@ -68,6 +86,9 @@ public class ReserveService {
         return true;
     }
 
+    /**
+     * 예매 내역 insert
+     */
     public void writeReservaton(Reservation[] reservations) throws Exception {
 
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("reserve.txt"));

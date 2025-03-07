@@ -12,6 +12,10 @@ public class UserService {
 
     private static ReserveService reserveService;
 
+    /**
+     * 회원 정보 조회
+     * @return User[]
+     */
     public static User[] readUser() throws Exception {
 
         File file = new File("user.txt");
@@ -26,6 +30,10 @@ public class UserService {
         return (User[]) ois.readObject();
     }
 
+    /**
+     * 회원 가입
+     * @param user
+     */
     public void enrollUser(User user) throws Exception{
 
         List<User> users = new ArrayList<>();
@@ -41,6 +49,11 @@ public class UserService {
         insertUser(userArr);
     }
 
+    /**
+     * 로그인
+     * @param user
+     * @return boolean
+     */
     public boolean loginUser(User user) throws Exception{
 
         List<User> users = new ArrayList<>();
@@ -61,7 +74,11 @@ public class UserService {
         } else return true;
     }
 
-
+    /**
+     * ID 중복 확인
+     * @param userId
+     * @return String
+     */
     public boolean validUserId(String userId) throws Exception {
 
         List<User> users = new ArrayList<>();try {
@@ -82,7 +99,9 @@ public class UserService {
         return false;
     }
 
-
+    /**
+     * 회원 정보 insert
+     */
     public void insertUser(User[] users) throws Exception {
 
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("user.txt"));

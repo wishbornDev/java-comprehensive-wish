@@ -10,17 +10,28 @@ public class MovieController {
 
     private static MovieService movieService = new MovieService();
 
-
+    /**
+     * 상영 중인 영화
+     * @return List<Movie>
+     */
     public List<Movie> playingMovies() throws Exception {
 
         return movieService.playingMovies();
     }
 
+    /**
+     * 영화 정보
+     * @params int
+     * @return Movie
+     */
     public Movie getMovieInfo(int movieNo) throws Exception {
 
         return movieService.getMovieInfo(movieNo);
     }
 
+    /**
+     * 영화 정보 insert
+     */
     public void insertMovie() throws Exception {
 
         Movie[] movies = {

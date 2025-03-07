@@ -11,23 +11,39 @@ public class ReserveController {
 
     private static ReserveService reserveService = new ReserveService();
 
-
+    /**
+     * 예매 내역 확인
+     * @param user
+     * @return List<Reservation
+     */
     public List<Reservation> checkReserve(User user) throws Exception {
 
         return reserveService.checkReserve(user);
     }
 
+    /**
+     * 예매 취소
+     * @params reserveNo
+     */
     public void cancelReserve(int reserveNo) throws  Exception {
 
         reserveService.cancelReserve(reserveNo);
     }
 
+    /**
+     * 영화 예매
+     * @param reservation
+     * @return boolean
+     */
     public boolean reserveMovie(Reservation reservation) throws  Exception {
 
         return reserveService.reserveMovie(reservation);
 
     }
 
+    /**
+     * 예매 내역 insert
+     */
     public void insertReservation() throws Exception  {
 
         Reservation[] reservations = {

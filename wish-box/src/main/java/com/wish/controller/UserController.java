@@ -8,16 +8,30 @@ import java.time.LocalDate;
 public class UserController {
     private static UserService userService = new UserService();
 
+    /**
+     * 회원 가입
+     * @param user
+     */
     public void enrollUser(User user) throws Exception {
         userService.enrollUser(user);
     }
 
+    /**
+     * 로그인
+     * @param user
+     * @return boolean
+     */
     public boolean loginUser(User user) throws Exception{
 
        return userService.loginUser(user);
 
     }
 
+    /**
+     * ID 중복 확인
+     * @param userId
+     * @return String
+     */
     public String validUserId(String userId) throws Exception {
 
         boolean isValid = userService.validUserId(userId);
@@ -28,6 +42,9 @@ public class UserController {
         }
     }
 
+    /**
+     * 회원 정보 insert
+     */
     public void insertUser() throws Exception {
 
         User[] users = {

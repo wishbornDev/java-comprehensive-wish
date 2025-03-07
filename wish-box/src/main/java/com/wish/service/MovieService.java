@@ -12,6 +12,10 @@ import java.util.stream.Collectors;
 
 public class MovieService {
 
+    /**
+     * 전체 영화 목록
+     * @return Movie[]
+     */
     public Movie[] allMovies() throws Exception {
         File file = new File("movie.txt");
 
@@ -25,7 +29,11 @@ public class MovieService {
 
         return (Movie[])ois.readObject();
     }
-    
+
+    /**
+     * 상영 중인 영화
+     * @return List<Movie>
+     */
     public List<Movie> playingMovies() throws Exception{
 
         List<Movie> allMovies = new ArrayList<>(Arrays.asList(allMovies()));
@@ -36,6 +44,10 @@ public class MovieService {
         
     }
 
+    /**
+     * 영화 예매 / 취소 시 예매 가능 수 변경
+     * @param reservation
+     */
     public void updateMoviePersonnel(Reservation reservation) throws Exception {
 
         List<Movie> allMovies = new ArrayList<>(Arrays.asList(allMovies()));
@@ -57,6 +69,11 @@ public class MovieService {
 
     }
 
+    /**
+     * 영화 정보
+     * @param movieNo
+     * @return Movie
+     */
     public Movie getMovieInfo(int movieNo) throws Exception {
         List<Movie> allMovies = new ArrayList<>();
         allMovies.addAll(Arrays.asList(allMovies()));
@@ -71,6 +88,10 @@ public class MovieService {
         return movies.get(0);
     }
 
+    /**
+     * 영화 정보 insert
+     * @param movies
+     */
     public void insertMovie(Movie[] movies) throws Exception {
 
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("movie.txt"));

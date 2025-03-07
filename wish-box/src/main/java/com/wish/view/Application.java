@@ -58,10 +58,14 @@ public class Application {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }*/
-
+        
+        /* 메인 화면 호출 */
        mainHome();
     }
 
+    /**
+     * 메인 화면
+     */
     private static void mainHome() {
         // 영화 예약 시스템
         StringBuilder sb = new StringBuilder();
@@ -93,6 +97,9 @@ public class Application {
         }
     }
 
+    /**
+     * 회원 가입 화면
+     */
     private static void enrollUser() throws Exception {
         System.out.println("********* 회원가입 **********");
         String userId;
@@ -122,11 +129,14 @@ public class Application {
             } else if (flag.equalsIgnoreCase("n")) mainHome();
         } catch (InputMismatchException e) {
             System.out.println("잘못된 값을 입력하셨습니다. 메인으로 돌아갑니다.");
+        } finally {
             mainHome();
         }
     }
 
-
+    /**
+     * 로그인 화면
+     */
     private static void loginUser() throws Exception {
 
         System.out.println("********* 로그인 **********");
@@ -146,7 +156,10 @@ public class Application {
         else mainHome();
 
     }
-
+    
+    /**
+     * 로그인 - 메인화면
+     */
     private static void process() throws Exception {
         System.out.println("********* 영화 예매 **********");
         System.out.println("1. 예매 확인");
@@ -176,6 +189,9 @@ public class Application {
         }
     }
 
+    /**
+     * 예매 내역 확인
+     */
     private static void checkReserve() throws Exception{
 
         List<Reservation> reserveList = reserveController.checkReserve(loginUser);
@@ -207,6 +223,9 @@ public class Application {
         }
     }
 
+    /**
+     * 상영 중인 영화 화면
+     */
     private static void playingMovie() throws Exception {
         List<Movie> playingMovies = movieController.playingMovies();
 
@@ -234,6 +253,9 @@ public class Application {
         }
     }
 
+    /**
+     * 예매하기
+     */
     private static void reserveMovie(int movieId) throws Exception {
 
         Movie movie = movieController.getMovieInfo(movieId);
