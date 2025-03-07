@@ -6,7 +6,6 @@ import com.wish.controller.UserController;
 import com.wish.model.Movie;
 import com.wish.model.Reservation;
 import com.wish.model.User;
-import com.wish.service.UserService;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -29,7 +28,7 @@ public class Application {
     public static void main(String[] args) {
 
         /* 초기 셋팅 */
-        /*try {
+        try {
             //userController.insertUser();
             movieController.insertMovie();
             //reserveController.insertReservation();
@@ -57,7 +56,7 @@ public class Application {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }*/
+        }
         
         /* 메인 화면 호출 */
        mainHome();

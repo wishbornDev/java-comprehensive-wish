@@ -6,6 +6,7 @@ import com.wish.model.User;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +34,7 @@ public class ReserveService {
     /**
      * 예매 내역 확인
      * @param user
-     * @return List<Reservation
+     * @return List<Reservation>
      */
     public List<Reservation> checkReserve(User user) throws Exception {
 
@@ -43,7 +44,13 @@ public class ReserveService {
         }catch (NullPointerException e) {
 
         }finally {
-            return reserveList.stream().filter(r -> r.getReserv_user().equals(user.getUserId())).collect(Collectors.toList());
+
+            List<Reservation> result = reserveList.stream()
+                    .filter(r -> r.getReserv_user().equals(user.getUserId()))
+                    .sorted(Comparator.comparing(Reservation::getPlayTime).reversed())
+                    .collect(Collectors.toList());
+
+            return result;
         }
     }
 
