@@ -46,9 +46,11 @@ public class MovieService {
 
     /**
      * 영화 예매 / 취소 시 예매 가능 수 변경
+     *
      * @param reservation
+     * @param flag
      */
-    public void updateMoviePersonnel(Reservation reservation) throws Exception {
+    public void updateMoviePersonnel(Reservation reservation, boolean flag) throws Exception {
 
         List<Movie> allMovies = new ArrayList<>(Arrays.asList(allMovies()));
 
@@ -59,7 +61,12 @@ public class MovieService {
         int index = allMovies.indexOf(update.get(0));
         int adult = reservation.getReserv_adult();
         int minor = reservation.getReserv_minor();
-        int personnel = update.get(0).getPersonnel() - (adult + minor);
+        int personnel = 0;
+        if (flag) {
+            personnel = update.get(0).getPersonnel() - (adult + minor);
+        } else {
+            personnel = update.get(0).getPersonnel() + (adult + minor);
+        }
         update.get(0).setPersonnel(personnel);
         allMovies.set(index, update.get(0));
 

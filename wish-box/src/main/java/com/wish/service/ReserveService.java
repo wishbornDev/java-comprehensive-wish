@@ -54,11 +54,15 @@ public class ReserveService {
     public void cancelReserve(int reserveNo) throws Exception{
 
         List<Reservation> reserveList = new ArrayList<>(Arrays.asList(getReserveList()));
+        Reservation reservation = reserveList.get(reserveNo);
         reserveList.remove(reserveNo);
 
         Reservation[] reserveArr = reserveList.toArray(new Reservation[reserveList.size()]);
 
         writeReservaton(reserveArr);
+        // cancel
+        boolean flag = false;
+        movieService.updateMoviePersonnel(reservation, flag);
 
         System.out.println("예매가 취소되었습니다.");
 
@@ -82,7 +86,9 @@ public class ReserveService {
         }
         Reservation[] reserveArr = reserveList.toArray(new Reservation[reserveList.size()]);
         writeReservaton(reserveArr);
-        movieService.updateMoviePersonnel(reservation);
+        // reserve
+        boolean flag = true;
+        movieService.updateMoviePersonnel(reservation, flag);
         return true;
     }
 
